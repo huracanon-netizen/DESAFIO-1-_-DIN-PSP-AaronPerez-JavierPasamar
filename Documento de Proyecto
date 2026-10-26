@@ -7,3 +7,9 @@ Día 1 - 19/10/2026
 	Creación repositorio público en Github, y se comparte con el profesor.
 Día 2 - 21/10/2026
 	Creación de base de datos.
+Día 3 - 26/20/2026
+	Investigación Named PipeLines, documentación, explicación del uso de Named PipeLines en el proyecto y ejemplo de JSON - DATOS A ENVIAR.
+
+INVESTIGACIÓN SOBRE NAMED PIPELINES
+Named Pipe es un canal con nombre que crea un proceso (el servidor) y al que otro proceso (el cliente) se conecta por ese nombre.
+Es la comunicación entre procesos independientes, que es justo lo que pide el proyecto.
