@@ -8,8 +8,20 @@ Día 1 - 19/10/2026
 Día 2 - 21/10/2026
 	Creación de base de datos.
 Día 3 - 26/20/2026
-	Investigación Named PipeLines, documentación, explicación del uso de Named PipeLines en el proyecto y ejemplo de JSON - DATOS A ENVIAR.
+	Investigación Named PipeLines y JSON, documentación, explicación del uso de Named PipeLines en el proyecto y ejemplo de JSON - DATOS A ENVIAR.
 
-INVESTIGACIÓN SOBRE NAMED PIPELINES
-Named Pipe es un canal con nombre que crea un proceso (el servidor) y al que otro proceso (el cliente) se conecta por ese nombre.
-Es la comunicación entre procesos independientes, que es justo lo que pide el proyecto.
+INVESTIGACIÓN SOBRE NAMED PIPELINES (BREVE)
+Named Pipe, en español, tubería con nombre. Es un canal de comuncicación que permite que dos procesos independientes intercambien datos.
+Un proceso, el servidor, crea la tubería dándole un nombre, mientras que el otro proceso crea el cliente que se conecta al servidor usando ese mismo nombre.
+Varias características son;
+	- Tienen nombre: Cliente localiza tubería por el nombre, si no coinciden los nombre no se establece conexión.
+	- Comunican procesos independientes: Cada app tiene sus procesos y memoria, no comparten variables y por eso necesitan un canal para enviarse datos.
+	- Funcionan en misma máquina o por red: En nuestro caso, ambas aplicaciones se abren desde el mismo ordenador.
+	- Pueden tener una dirección o varias: Gracias a Pipedirection.in/PipeDirection.out, o InOut.
+	- Son bloqueantes por defecto: Esperar una conexión o leer datos detiene el hilo que lo hace.
+
+INVESTIGACIÓN SOBRE JSON (BREVE)
+Es un formato de texto ligero que permite guardar e intercambiar datos entre programas. Estructurados entre un servidor y una aplicación.
+Se basa en dos estructuras clave.
+	Objetos{}: Son las colecciones desordenadas de pares clave:valor.
+	Arrays[]: Listas ordenadas de valores.
