@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using App1_Gestion_Escape_Rooms.Models;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace App1_Gestion_Escape_Rooms
 {
@@ -35,19 +34,11 @@ namespace App1_Gestion_Escape_Rooms
             }
         }
 
-        private void LimpiarFormulario()
-        {
-            txtDni.Text = "";
-            txtNombre.Text = "";
-            txtEmail.Text = "";
-            txtTelefono.Text = "";
-        }
-
         private bool ValidarCliente(EscapeRoomsContext contexto, int idActual)
         {
             string dni = txtDni.Text.Trim().ToUpper();
             string nombre = txtNombre.Text.Trim();
-            string email = txtEmail.Text.Trim();
+            string email = txtEmail.Text.Trim().ToLower();
             string telefono = txtTelefono.Text.Trim();
 
             if (dni.Length != 9)
@@ -55,44 +46,44 @@ namespace App1_Gestion_Escape_Rooms
                 MessageBox.Show("El DNI debe tener 9 caracteres.");
                 return false;
             }
-            if (nombre == "")
+            if (nombre == "" || nombre.Length > 100)
             {
-                MessageBox.Show("El nombre es obligatorio.");
+                MessageBox.Show("El nombre es obligatorio y tiene un máximo de 100 caracteres.");
                 return false;
             }
-            if (email == "" || !email.Contains("@"))
+            if (email == "" || !email.Contains("@") || email.Length > 100)
             {
-                MessageBox.Show("El email es obligatorio y debe contener @.");
+                MessageBox.Show("El email es obligatorio, debe contener @ y tiene un máximo de 100 caracteres.");
                 return false;
             }
-            if (telefono != "" && !telefono.All(char.IsDigit))
+            if (telefono.Length > 20)
             {
-                MessageBox.Show("El teléfono solo puede contener números.");
+                MessageBox.Show("El teléfono tiene un máximo de 20 caracteres.");
                 return false;
             }
-            if (contexto.Clientes.Any(c => c.Dni == dni && c.IdCliente != idActual))
+            foreach (char caracter in telefono)
             {
-                MessageBox.Show("Ya existe un cliente con ese DNI.");
-                return false;
+                if (!char.IsDigit(caracter))
+                {
+                    MessageBox.Show("El teléfono solo puede contener números.");
+                    return false;
+                }
             }
-            if (contexto.Clientes.Any(c => c.Email == email && c.IdCliente != idActual))
+
+            foreach (Cliente otro in contexto.Clientes.ToList())
             {
-                MessageBox.Show("Ya existe un cliente con ese email.");
-                return false;
+                if (otro.IdCliente != idActual && otro.Dni.ToUpper() == dni)
+                {
+                    MessageBox.Show("Ya existe un cliente con ese DNI.");
+                    return false;
+                }
+                if (otro.IdCliente != idActual && otro.Email.ToLower() == email)
+                {
+                    MessageBox.Show("Ya existe un cliente con ese email.");
+                    return false;
+                }
             }
             return true;
-        }
-
-        private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Cliente? seleccionado = dgClientes.SelectedItem as Cliente;
-            if (seleccionado != null)
-            {
-                txtDni.Text = seleccionado.Dni;
-                txtNombre.Text = seleccionado.Nombre;
-                txtEmail.Text = seleccionado.Email;
-                txtTelefono.Text = seleccionado.Telefono;
-            }
         }
 
         private void Actualizar_Click(object sender, RoutedEventArgs e)
@@ -100,7 +91,6 @@ namespace App1_Gestion_Escape_Rooms
             try
             {
                 CargarClientes();
-                LimpiarFormulario();
                 txtEstado.Text = "Lista actualizada.";
             }
             catch (Exception ex)
@@ -120,20 +110,20 @@ namespace App1_Gestion_Escape_Rooms
                         return;
                     }
 
-                    Cliente cliente = new Cliente
+                    Cliente cliente = new Cliente();
+                    cliente.Dni = txtDni.Text.Trim().ToUpper();
+                    cliente.Nombre = txtNombre.Text.Trim();
+                    cliente.Email = txtEmail.Text.Trim().ToLower();
+                    if (txtTelefono.Text.Trim() != "")
                     {
-                        Dni = txtDni.Text.Trim().ToUpper(),
-                        Nombre = txtNombre.Text.Trim(),
-                        Email = txtEmail.Text.Trim(),
-                        Telefono = txtTelefono.Text.Trim() == "" ? null : txtTelefono.Text.Trim()
-                    };
+                        cliente.Telefono = txtTelefono.Text.Trim();
+                    }
 
                     contexto.Clientes.Add(cliente);
                     contexto.SaveChanges();
                 }
 
                 CargarClientes();
-                LimpiarFormulario();
                 txtEstado.Text = "Cliente insertado correctamente.";
             }
             catch (Exception ex)
@@ -146,12 +136,12 @@ namespace App1_Gestion_Escape_Rooms
         {
             try
             {
-                Cliente? seleccionado = dgClientes.SelectedItem as Cliente;
-                if (seleccionado == null)
+                if (dgClientes.SelectedItem == null)
                 {
                     MessageBox.Show("Selecciona un cliente de la tabla.");
                     return;
                 }
+                Cliente seleccionado = (Cliente)dgClientes.SelectedItem;
 
                 using (EscapeRoomsContext contexto = escapeRoomsContext.CreateDbContext())
                 {
@@ -160,24 +150,28 @@ namespace App1_Gestion_Escape_Rooms
                         return;
                     }
 
-                    Cliente? cliente = contexto.Clientes
-                        .FirstOrDefault(c => c.IdCliente == seleccionado.IdCliente);
-                    if (cliente == null)
+                    foreach (Cliente cliente in contexto.Clientes.ToList())
                     {
-                        MessageBox.Show("El cliente ya no existe.");
-                        return;
+                        if (cliente.IdCliente == seleccionado.IdCliente)
+                        {
+                            cliente.Dni = txtDni.Text.Trim().ToUpper();
+                            cliente.Nombre = txtNombre.Text.Trim();
+                            cliente.Email = txtEmail.Text.Trim().ToLower();
+                            if (txtTelefono.Text.Trim() != "")
+                            {
+                                cliente.Telefono = txtTelefono.Text.Trim();
+                            }
+                            else
+                            {
+                                cliente.Telefono = null;
+                            }
+                        }
                     }
-
-                    cliente.Dni = txtDni.Text.Trim().ToUpper();
-                    cliente.Nombre = txtNombre.Text.Trim();
-                    cliente.Email = txtEmail.Text.Trim();
-                    cliente.Telefono = txtTelefono.Text.Trim() == "" ? null : txtTelefono.Text.Trim();
 
                     contexto.SaveChanges();
                 }
 
                 CargarClientes();
-                LimpiarFormulario();
                 txtEstado.Text = "Cliente modificado correctamente.";
             }
             catch (Exception ex)
@@ -190,38 +184,27 @@ namespace App1_Gestion_Escape_Rooms
         {
             try
             {
-                Cliente? seleccionado = dgClientes.SelectedItem as Cliente;
-                if (seleccionado == null)
+                if (dgClientes.SelectedItem == null)
                 {
                     MessageBox.Show("Selecciona un cliente de la tabla.");
                     return;
                 }
-
-                MessageBoxResult respuesta = MessageBox.Show(
-                    "Se eliminará el cliente y todas sus reservas. ¿Continuar?",
-                    "Eliminar cliente",
-                    MessageBoxButton.YesNo);
-                if (respuesta != MessageBoxResult.Yes)
-                {
-                    return;
-                }
+                Cliente seleccionado = (Cliente)dgClientes.SelectedItem;
 
                 using (EscapeRoomsContext contexto = escapeRoomsContext.CreateDbContext())
                 {
-                    Cliente? cliente = contexto.Clientes
-                        .FirstOrDefault(c => c.IdCliente == seleccionado.IdCliente);
-                    if (cliente == null)
+                    foreach (Cliente cliente in contexto.Clientes.ToList())
                     {
-                        MessageBox.Show("El cliente ya no existe.");
-                        return;
+                        if (cliente.IdCliente == seleccionado.IdCliente)
+                        {
+                            contexto.Clientes.Remove(cliente);
+                        }
                     }
 
-                    contexto.Clientes.Remove(cliente);
                     contexto.SaveChanges();
                 }
 
                 CargarClientes();
-                LimpiarFormulario();
                 txtEstado.Text = "Cliente eliminado correctamente.";
             }
             catch (Exception ex)
