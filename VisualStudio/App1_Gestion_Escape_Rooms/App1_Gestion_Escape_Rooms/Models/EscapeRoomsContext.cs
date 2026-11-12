@@ -25,10 +25,6 @@ public partial class EscapeRoomsContext : DbContext
 
     public virtual DbSet<Tematica> Tematicas { get; set; }
 
-    public virtual DbSet<VistaReservasCompleta> VistaReservasCompletas { get; set; }
-
-    public virtual DbSet<VistaResultadosCompleto> VistaResultadosCompletos { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -252,70 +248,6 @@ public partial class EscapeRoomsContext : DbContext
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .HasColumnName("nombre");
-        });
-
-        modelBuilder.Entity<VistaReservasCompleta>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("vista_reservas_completas");
-
-            entity.Property(e => e.Cliente)
-                .HasMaxLength(100)
-                .HasColumnName("cliente");
-            entity.Property(e => e.FechaHora)
-                .HasColumnType("datetime")
-                .HasColumnName("fecha_hora");
-            entity.Property(e => e.IdReserva)
-                .HasColumnType("int(11)")
-                .HasColumnName("idReserva");
-            entity.Property(e => e.NumJugadores)
-                .HasColumnType("int(11)")
-                .HasColumnName("num_jugadores");
-            entity.Property(e => e.Pagada)
-                .HasColumnType("int(11)")
-                .HasColumnName("pagada");
-            entity.Property(e => e.Sala)
-                .HasMaxLength(100)
-                .HasColumnName("sala");
-        });
-
-        modelBuilder.Entity<VistaResultadosCompleto>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("vista_resultados_completos");
-
-            entity.Property(e => e.Clasificacion)
-                .HasMaxLength(30)
-                .HasColumnName("clasificacion");
-            entity.Property(e => e.Cliente)
-                .HasMaxLength(100)
-                .HasColumnName("cliente");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(50)
-                .HasColumnName("estado");
-            entity.Property(e => e.FechaHora)
-                .HasColumnType("datetime")
-                .HasColumnName("fecha_hora");
-            entity.Property(e => e.FechaProceso)
-                .HasColumnType("datetime")
-                .HasColumnName("fecha_proceso");
-            entity.Property(e => e.IdSolicitud)
-                .HasMaxLength(20)
-                .HasColumnName("id_solicitud");
-            entity.Property(e => e.PistasUsadas)
-                .HasColumnType("int(11)")
-                .HasColumnName("pistas_usadas");
-            entity.Property(e => e.Puntuacion)
-                .HasColumnType("int(11)")
-                .HasColumnName("puntuacion");
-            entity.Property(e => e.Sala)
-                .HasMaxLength(100)
-                .HasColumnName("sala");
-            entity.Property(e => e.TiempoSegundos)
-                .HasColumnType("int(11)")
-                .HasColumnName("tiempo_segundos");
         });
 
         OnModelCreatingPartial(modelBuilder);

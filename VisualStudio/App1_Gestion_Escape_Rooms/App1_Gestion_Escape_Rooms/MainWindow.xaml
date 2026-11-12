@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:App1_Gestion_Escape_Rooms"
         mc:Ignorable="d"
-        Title="Gestión de Escape Rooms" MinHeight="420"
-        MinWidth="700"
+        Title="Gestión de Escape Rooms" MinHeight="520"
+        MinWidth="760"
         WindowStartupLocation="CenterScreen">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Gestión de clientes"
@@ -21,21 +23,62 @@
                    FontWeight="Bold"
                    Margin="0,0,0,18"/>
 
-        <WrapPanel Grid.Row="1" Margin="0,0,0,15">
+        <WrapPanel Grid.Row="1" Margin="0,0,0,10">
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="DNI"/>
+                <TextBox x:Name="txtDni" Width="110" MaxLength="9"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Nombre"/>
+                <TextBox x:Name="txtNombre" Width="180" MaxLength="100"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Email"/>
+                <TextBox x:Name="txtEmail" Width="220" MaxLength="100"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Teléfono"/>
+                <TextBox x:Name="txtTelefono" Width="120" MaxLength="20"/>
+            </StackPanel>
+        </WrapPanel>
+
+        <WrapPanel Grid.Row="2" Margin="0,0,0,15">
             <Button Content="Actualizar"
                     Width="100"
                     Height="34"
                     Margin="0,0,10,5"
                     Click="Actualizar_Click"/>
+
+            <Button Content="Insertar"
+                    Width="100"
+                    Height="34"
+                    Margin="0,0,10,5"
+                    Click="Insertar_Click"/>
+
+            <Button Content="Modificar"
+                    Width="100"
+                    Height="34"
+                    Margin="0,0,10,5"
+                    Click="Modificar_Click"/>
+
+            <Button Content="Eliminar"
+                    Width="100"
+                    Height="34"
+                    Margin="0,0,10,5"
+                    Click="Eliminar_Click"/>
         </WrapPanel>
 
         <DataGrid x:Name="dgClientes"
-                  Grid.Row="2"
+                  Grid.Row="3"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserAddRows="False"
                   SelectionMode="Single"
-                  SelectionUnit="FullRow">
+                  SelectionUnit="FullRow"
+                  SelectionChanged="dgClientes_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
@@ -59,5 +102,10 @@
                                     Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <TextBlock x:Name="txtEstado"
+                   Grid.Row="4"
+                   Margin="0,12,0,0"
+                   Foreground="Gray"/>
     </Grid>
 </Window>

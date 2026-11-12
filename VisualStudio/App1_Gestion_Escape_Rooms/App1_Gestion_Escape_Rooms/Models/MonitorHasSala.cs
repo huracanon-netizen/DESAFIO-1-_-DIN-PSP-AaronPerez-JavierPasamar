@@ -11,7 +11,7 @@ public partial class MonitorHasSala
 
     public string? NivelCertificacion { get; set; }
 
-    public DateOnly? FechaAlta { get; set; }
+    public DateTime? FechaAlta { get; set; }
 
     public virtual Monitor MonitorIdMonitorNavigation { get; set; } = null!;
 

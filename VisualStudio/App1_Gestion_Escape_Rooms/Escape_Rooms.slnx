@@ -1,4 +1,4 @@
 <Solution>
   <Project Path="App1_Gestion_Escape_Rooms/App1_Gestion_Escape_Rooms.csproj" />
-  <Project Path="App2_Procesamiento/App2_Procesamiento.csproj" />
+  <Project Path="App2_Procesamiento/App2_Servidor.csproj" />
 </Solution>

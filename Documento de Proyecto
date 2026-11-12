@@ -7,7 +7,7 @@ Día 1 - 19/10/2026
 	Creación repositorio público en Github, y se comparte con el profesor.
 Día 2 - 21/10/2026
 	Creación de base de datos.
-Día 3 - 26/20/2026
+Día 3 - 26/10/2026
 	Investigación Named PipeLines y JSON, documentación, explicación del uso de Named PipeLines en el proyecto y ejemplo de JSON - DATOS A ENVIAR.
 
 INVESTIGACIÓN SOBRE NAMED PIPELINES (BREVE)
@@ -16,7 +16,7 @@ Un proceso, el servidor, crea la tubería dándole un nombre, mientras que el ot
 Varias características son;
 	- Tienen nombre: Cliente localiza tubería por el nombre, si no coinciden los nombre no se establece conexión.
 	- Comunican procesos independientes: Cada app tiene sus procesos y memoria, no comparten variables y por eso necesitan un canal para enviarse datos.
-	- Funcionan en misma máquina o por red: En nuestro caso, ambas aplicaciones se abren desde el mismo ordenador.
+	- Funcionan en la misma máquina: no se usan en red. En nuestro caso, ambas aplicaciones se abren desde el mismo ordenador.
 	- Pueden tener una dirección o varias: Gracias a Pipedirection.in/PipeDirection.out, o InOut.
 	- Son bloqueantes por defecto: Esperar una conexión o leer datos detiene el hilo que lo hace.
 
