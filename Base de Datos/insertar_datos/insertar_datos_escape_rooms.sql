@@ -15,10 +15,10 @@ INSERT INTO Sala (nombre, dificultad, duracion_max_min, min_jugadores, max_jugad
 ('Estación Orbital', 'Dificil', 75, 3, 6, 20.00, 4);
 
 INSERT INTO Cliente (dni, nombre, Email, Telefono) VALUES
-('11111111A', 'Laura Gómez', 'laura.gomez@mail.com', '600111222'),
-('22222222B', 'Carlos Pérez', 'carlos.perez@mail.com', '600222333'),
-('33333333C', 'Marta Sanz', 'marta.sanz@mail.com', '600333444'),
-('44444444D', 'Javier Ruiz', 'javier.ruiz@mail.com', '600444555');
+('11111111A', 'Laura Gómez', 'laura.gomez@gmail.com', '600111222'),
+('22222222B', 'Carlos Pérez', 'carlos.perez@gmail.com', '600222333'),
+('33333333C', 'Marta Sanz', 'marta.sanz@gmail.com', '600333444'),
+('44444444D', 'Javier Ruiz', 'javier.ruiz@gmail.com', '600444555');
 
 INSERT INTO Monitor (dni, nombre, activo) VALUES
 ('77777777G', 'Sergio Blanco', 1),
