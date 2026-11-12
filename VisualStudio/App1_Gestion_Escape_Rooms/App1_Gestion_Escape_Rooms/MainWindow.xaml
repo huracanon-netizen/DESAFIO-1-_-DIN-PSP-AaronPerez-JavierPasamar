@@ -6,7 +6,6 @@
         WindowStartupLocation="CenterScreen">
 
     <DockPanel>
-        <!-- Menú superior -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Gestión">
                 <MenuItem Header="Clientes" Click="MenuClientes_Click"/>
@@ -26,7 +25,6 @@
             </MenuItem>
         </Menu>
 
-        <!-- Zona central donde se cargan las pantallas -->
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </DockPanel>
 </Window>

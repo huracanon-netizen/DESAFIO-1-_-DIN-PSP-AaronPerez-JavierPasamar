@@ -1,6 +1,6 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
-using App1_Gestion_Escape_Rooms.Paginas;  // ← esta línea es importante
+using App1_Gestion_Escape_Rooms.Paginas;
 
 namespace App1_Gestion_Escape_Rooms
 {
@@ -9,8 +9,6 @@ namespace App1_Gestion_Escape_Rooms
         public MainWindow()
         {
             InitializeComponent();
-
-            // Esta es la línea importante:
             MainFrame.Navigate(new ClientesPage());
         }
 
