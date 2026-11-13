@@ -89,13 +89,15 @@ namespace App1_Gestion_Escape_Rooms.Paginas
                 }
                 Reserva reserva = (Reserva)dgReservas.SelectedItem;
 
-                int tiempo;
+                int tiempoMinutos;
                 int pistas;
-                if (!int.TryParse(txtTiempo.Text.Trim(), out tiempo) || !int.TryParse(txtPistas.Text.Trim(), out pistas))
+                if (!int.TryParse(txtTiempo.Text.Trim(), out tiempoMinutos) || !int.TryParse(txtPistas.Text.Trim(), out pistas))
                 {
-                    MessageBox.Show("El tiempo y las pistas deben ser números enteros.");
+                    MessageBox.Show("El tiempo (en minutos) y las pistas deben ser números enteros.");
                     return;
                 }
+
+                int tiempo = tiempoMinutos * 60;
 
                 Solicitud solicitud = new Solicitud();
                 solicitud.idSolicitud = GenerarIdSolicitud();

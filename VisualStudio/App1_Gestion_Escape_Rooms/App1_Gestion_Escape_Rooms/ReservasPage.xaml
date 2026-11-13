@@ -1,0 +1,72 @@
+﻿<Page x:Class="App1_Gestion_Escape_Rooms.Paginas.ReservasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Reservas">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Gestión de reservas"
+                   FontSize="25"
+                   FontWeight="Bold"
+                   Margin="0,0,0,18"/>
+
+        <DataGrid x:Name="dgReservas"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="dgReservas_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdReserva}" Width="50"/>
+                <DataGridTextColumn Header="Fecha y hora" Binding="{Binding FechaHora, StringFormat=dd/MM/yyyy HH:mm}" Width="130"/>
+                <DataGridTextColumn Header="Jugadores" Binding="{Binding NumJugadores}" Width="80"/>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteIdClienteNavigation.Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding SalaIdSalaNavigation.Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Pagada" Binding="{Binding Pagada}" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <WrapPanel Grid.Row="2" Margin="0,10,0,0">
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Fecha"/>
+                <DatePicker x:Name="dpFecha" Width="130"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Hora (HH:mm)"/>
+                <TextBox x:Name="txtHora" Width="80"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Jugadores"/>
+                <TextBox x:Name="txtJugadores" Width="80"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Cliente"/>
+                <ComboBox x:Name="cbCliente" Width="180" DisplayMemberPath="Nombre" SelectedValuePath="IdCliente"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Sala"/>
+                <ComboBox x:Name="cbSala" Width="180" DisplayMemberPath="Nombre" SelectedValuePath="IdSala"/>
+            </StackPanel>
+
+            <CheckBox x:Name="chkPagada" Content="Pagada" Margin="0,32,0,5"/>
+        </WrapPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
+            <Button x:Name="btnGuardar" Content="Guardar" Width="100" Height="32" Margin="0,0,10,0" Click="Guardar_Click"/>
+            <Button Content="Nueva / Limpiar" Width="120" Height="32" Margin="0,0,10,0" Click="Limpiar_Click"/>
+            <Button Content="Eliminar" Width="100" Height="32" Click="Eliminar_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

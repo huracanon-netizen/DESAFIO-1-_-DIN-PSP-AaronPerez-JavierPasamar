@@ -1,0 +1,82 @@
+﻿<Page x:Class="App1_Gestion_Escape_Rooms.Paginas.SalasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Salas">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Gestión de salas"
+                   FontSize="25"
+                   FontWeight="Bold"
+                   Margin="0,0,0,18"/>
+
+        <DataGrid x:Name="dgSalas"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="dgSalas_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdSala}" Width="50"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Temática" Binding="{Binding IdTematicaNavigation.Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Dificultad" Binding="{Binding Dificultad}" Width="90"/>
+                <DataGridTextColumn Header="Duración (min)" Binding="{Binding DuracionMaxMin}" Width="100"/>
+                <DataGridTextColumn Header="Mín." Binding="{Binding MinJugadores}" Width="50"/>
+                <DataGridTextColumn Header="Máx." Binding="{Binding MaxJugadores}" Width="50"/>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=N2}" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <WrapPanel Grid.Row="2" Margin="0,10,0,0">
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Nombre"/>
+                <TextBox x:Name="txtNombre" Width="170"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Temática"/>
+                <ComboBox x:Name="cbTematica" Width="160" DisplayMemberPath="Nombre" SelectedValuePath="IdTematica"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Dificultad"/>
+                <TextBox x:Name="txtDificultad" Width="100"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Duración máx. (min)"/>
+                <TextBox x:Name="txtDuracion" Width="110"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Mín. jugadores"/>
+                <TextBox x:Name="txtMinJugadores" Width="90"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Máx. jugadores"/>
+                <TextBox x:Name="txtMaxJugadores" Width="90"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Precio"/>
+                <TextBox x:Name="txtPrecio" Width="80"/>
+            </StackPanel>
+        </WrapPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
+            <Button Content="Guardar" Width="100" Height="32" Margin="0,0,10,0" Click="Guardar_Click"/>
+            <Button Content="Nueva / Limpiar" Width="120" Height="32" Margin="0,0,10,0" Click="Limpiar_Click"/>
+            <Button Content="Eliminar" Width="100" Height="32" Click="Eliminar_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

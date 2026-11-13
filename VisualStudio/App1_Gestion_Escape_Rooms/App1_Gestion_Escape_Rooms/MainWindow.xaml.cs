@@ -26,12 +26,12 @@ namespace App1_Gestion_Escape_Rooms
 
         private void MenuTematicas_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pantalla Temáticas (aún no creada)");
+            MainFrame.Navigate(new TematicasPage());
         }
 
         private void MenuSalas_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pantalla Salas (aún no creada)");
+            MainFrame.Navigate(new SalasPage());
         }
 
         private void MenuMonitores_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace App1_Gestion_Escape_Rooms
 
         private void MenuReservas_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pantalla Reservas (aún no creada)");
+            MainFrame.Navigate(new ReservasPage());
         }
 
         private void MenuResultados_Click(object sender, RoutedEventArgs e)

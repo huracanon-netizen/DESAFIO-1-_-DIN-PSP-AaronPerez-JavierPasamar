@@ -39,7 +39,7 @@
 
         <WrapPanel Grid.Row="3" Margin="0,10,0,0">
             <StackPanel Margin="0,0,15,5">
-                <Label Content="2. Tiempo (segundos)"/>
+                <Label Content="2. Tiempo (minutos)"/>
                 <TextBox x:Name="txtTiempo" Width="140"/>
             </StackPanel>
 
