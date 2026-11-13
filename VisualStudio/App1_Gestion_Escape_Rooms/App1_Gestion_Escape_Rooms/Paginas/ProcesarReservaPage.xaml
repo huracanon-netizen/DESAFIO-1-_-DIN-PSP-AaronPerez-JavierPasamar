@@ -1,0 +1,61 @@
+﻿<Page x:Class="App1_Gestion_Escape_Rooms.Paginas.ProcesarReservaPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Enviar reserva a procesar">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Enviar reserva a procesar"
+                   FontSize="25"
+                   FontWeight="Bold"
+                   Margin="0,0,0,18"/>
+
+        <Label Grid.Row="1" Content="1. Selecciona la reserva:"/>
+
+        <DataGrid x:Name="dgReservas"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdReserva}" Width="50"/>
+                <DataGridTextColumn Header="Fecha y hora" Binding="{Binding FechaHora}" Width="150"/>
+                <DataGridTextColumn Header="Jugadores" Binding="{Binding NumJugadores}" Width="80"/>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteIdClienteNavigation.Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding SalaIdSalaNavigation.Nombre}" Width="*"/>
+                <DataGridTextColumn Header="Pagada" Binding="{Binding Pagada}" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <WrapPanel Grid.Row="3" Margin="0,10,0,0">
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="2. Tiempo (segundos)"/>
+                <TextBox x:Name="txtTiempo" Width="140"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,15,5">
+                <Label Content="Pistas usadas"/>
+                <TextBox x:Name="txtPistas" Width="110"/>
+            </StackPanel>
+
+            <Button x:Name="btnEnviar"
+                    Content="3. Enviar a procesar"
+                    Width="150"
+                    Height="34"
+                    Margin="0,22,0,5"
+                    Click="Enviar_Click"/>
+        </WrapPanel>
+
+        <TextBlock x:Name="txtEstado" Grid.Row="4" Margin="0,12,0,0" Foreground="Gray"/>
+    </Grid>
+</Page>

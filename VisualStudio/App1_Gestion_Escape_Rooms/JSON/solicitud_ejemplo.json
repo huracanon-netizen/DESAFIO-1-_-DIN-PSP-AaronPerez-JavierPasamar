@@ -1,0 +1,14 @@
+{
+  "idSolicitud": "SOL-2026-004",
+  "reserva": {
+    "idReserva": 1,
+    "sala": "La Mansión Maldita",
+    "numJugadores": 4,
+    "valida": true
+  },
+  "partida": {
+    "tiempoSegundos": 3240,
+    "duracionMaxMin": 60,
+    "pistasUsadas": 2
+  }
+}

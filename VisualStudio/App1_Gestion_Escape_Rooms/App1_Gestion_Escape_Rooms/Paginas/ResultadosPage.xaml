@@ -1,0 +1,43 @@
+﻿<Page x:Class="App1_Gestion_Escape_Rooms.Paginas.ResultadosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Resultados">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Resultados procesados"
+                   FontSize="25"
+                   FontWeight="Bold"
+                   Margin="0,0,0,18"/>
+
+        <WrapPanel Grid.Row="1" Margin="0,0,0,15">
+            <Button Content="Actualizar" Width="100" Height="34" Margin="0,0,10,5" Click="Actualizar_Click"/>
+        </WrapPanel>
+
+        <DataGrid x:Name="dgResultados"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Solicitud" Binding="{Binding IdSolicitud}" Width="110"/>
+                <DataGridTextColumn Header="Reserva" Binding="{Binding ReservaIdReserva}" Width="65"/>
+                <DataGridTextColumn Header="Tiempo (s)" Binding="{Binding TiempoSegundos}" Width="75"/>
+                <DataGridTextColumn Header="Pistas" Binding="{Binding PistasUsadas}" Width="55"/>
+                <DataGridTextColumn Header="Puntuación" Binding="{Binding Puntuacion}" Width="80"/>
+                <DataGridTextColumn Header="Clasificación" Binding="{Binding Clasificacion}" Width="*"/>
+                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding FechaProceso}" Width="140"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock x:Name="txtEstado" Grid.Row="3" Margin="0,12,0,0" Foreground="Gray"/>
+    </Grid>
+</Page>

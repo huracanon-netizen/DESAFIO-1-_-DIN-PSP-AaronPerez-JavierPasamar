@@ -20,22 +20,26 @@
         <WrapPanel Grid.Row="1" Margin="0,0,0,10">
             <StackPanel Margin="0,0,15,5">
                 <Label Content="DNI"/>
-                <TextBox x:Name="txtDni" Width="110" MaxLength="9"/>
+                <TextBox x:Name="txtDni" Width="110"
+                         Text="{Binding SelectedItem.Dni, ElementName=dgClientes, Mode=OneWay}"/>
             </StackPanel>
 
             <StackPanel Margin="0,0,15,5">
                 <Label Content="Nombre"/>
-                <TextBox x:Name="txtNombre" Width="180" MaxLength="100"/>
+                <TextBox x:Name="txtNombre" Width="180"
+                         Text="{Binding SelectedItem.Nombre, ElementName=dgClientes, Mode=OneWay}"/>
             </StackPanel>
 
             <StackPanel Margin="0,0,15,5">
                 <Label Content="Email"/>
-                <TextBox x:Name="txtEmail" Width="220" MaxLength="100"/>
+                <TextBox x:Name="txtEmail" Width="220"
+                         Text="{Binding SelectedItem.Email, ElementName=dgClientes, Mode=OneWay}"/>
             </StackPanel>
 
             <StackPanel Margin="0,0,15,5">
                 <Label Content="Teléfono"/>
-                <TextBox x:Name="txtTelefono" Width="120" MaxLength="20"/>
+                <TextBox x:Name="txtTelefono" Width="120"
+                         Text="{Binding SelectedItem.Telefono, ElementName=dgClientes, Mode=OneWay}"/>
             </StackPanel>
         </WrapPanel>
 
@@ -52,8 +56,7 @@
                   IsReadOnly="True"
                   CanUserAddRows="False"
                   SelectionMode="Single"
-                  SelectionUnit="FullRow"
-                  SelectionChanged="dgClientes_SelectionChanged">
+                  SelectionUnit="FullRow">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding IdCliente}" Width="60"/>

@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using App1_Gestion_Escape_Rooms.Paginas;
 
@@ -8,8 +8,15 @@ namespace App1_Gestion_Escape_Rooms
     {
         public MainWindow()
         {
-            InitializeComponent();
-            MainFrame.Navigate(new ClientesPage());
+            try
+            {
+                InitializeComponent();
+                MainFrame.Navigate(new ClientesPage());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void MenuClientes_Click(object sender, RoutedEventArgs e)
@@ -39,17 +46,17 @@ namespace App1_Gestion_Escape_Rooms
 
         private void MenuResultados_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Pantalla Resultados (aún no creada)");
+            MainFrame.Navigate(new ResultadosPage());
         }
 
         private void MenuProcesarReserva_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Aquí enviaremos la reserva a la App2");
+            MainFrame.Navigate(new ProcesarReservaPage());
         }
 
         private void MenuAcercaDe_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Gestión Escape Rooms\nVersión 1.0\nAutores: ...");
+            MessageBox.Show("Gestión Escape Rooms\nVersión 1.0\nAutores: Aarón Pérez Ruiz y Javier Pasamar");
         }
     }
 }

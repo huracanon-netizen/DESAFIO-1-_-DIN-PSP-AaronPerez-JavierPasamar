@@ -1,0 +1,26 @@
+[
+  {
+    "IdPeticion": "SOL-2026-004",
+    "FechaHoraRecepcion": "2026-11-12T18:20:11.123",
+    "TipoOperacion": "Cálculo de puntuación",
+    "EstadoFinal": "Procesada correctamente",
+    "ErrorTecnico": null,
+    "CampoError": null,
+    "Detalle": null,
+    "Puntuacion": 780,
+    "Clasificacion": "Excelente",
+    "JsonRecibido": "{\"idSolicitud\":\"SOL-2026-004\",\"reserva\":{\"idReserva\":1,\"sala\":\"La Mansión Maldita\",\"numJugadores\":4,\"valida\":true},\"partida\":{\"tiempoSegundos\":3240,\"duracionMaxMin\":60,\"pistasUsadas\":2}}"
+  },
+  {
+    "IdPeticion": "SOL-2026-005",
+    "FechaHoraRecepcion": "2026-11-12T18:24:40.508",
+    "TipoOperacion": "Cálculo de puntuación",
+    "EstadoFinal": "Error de validación",
+    "ErrorTecnico": null,
+    "CampoError": "reserva.valida",
+    "Detalle": "La reserva no es válida (no está pagada)",
+    "Puntuacion": null,
+    "Clasificacion": null,
+    "JsonRecibido": "{\"idSolicitud\":\"SOL-2026-005\",\"reserva\":{\"idReserva\":3,\"sala\":\"El Templo Perdido\",\"numJugadores\":5,\"valida\":false},\"partida\":{\"tiempoSegundos\":2800,\"duracionMaxMin\":60,\"pistasUsadas\":1}}"
+  }
+]
